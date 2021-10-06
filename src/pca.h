@@ -8,5 +8,9 @@ public:
     void fit(Matrix X);
 
     Eigen::MatrixXd transform(Matrix X);
+
+    Matrix matrizDeCovarianza(Matrix A);
+
 private:
+    Vector media(Matrix A);
 };
