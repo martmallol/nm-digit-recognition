@@ -12,5 +12,10 @@ public:
     Matrix matrizDeCovarianza(Matrix A);
 
 private:
+    unsigned int n_;
+    Matrix covarianza_;
+    Vector autovalores_;
+    Vector autovectores_;
+
     Vector media(Matrix A);
 };

@@ -7,17 +7,22 @@ using namespace std;
 
 PCA::PCA(unsigned int n_components)
 {
-
+    n_ = n_components;
 }
 
 void PCA::fit(Matrix X)
 {
+    covarianza_ = matrizDeCovarianza(X);
+    pair<Vector, Matrix> deflacion = get_first_eigenvalues(covarianza_, covarianza_.rows()); //No tengo que agregar epsilon?
+    autovalores_ = deflacion.first;
+    autovectores_ = deflacion.second;
 }
 
 
 MatrixXd PCA::transform(Matrix X)
 {
-  throw std::runtime_error("Sin implementar");
+  //throw std::runtime_error("Sin implementar");
+  return X * autovectores_;
 }
 
 /*
@@ -28,7 +33,7 @@ MatrixXd PCA::transform(Matrix X)
  * Construimos la matriz X ∈ R^n×m donde cada muestra corresponde a una
    fila de X y tienen media cero (ej:, x^(i) = (x^(i) − µ) / sqrt(n − 1)). LISTO
  * Diagonalizamos la matriz de covarianzas Mx . La matriz V (ortogonal)
-   contiene los autovectores de Mx .
+   contiene los autovectores de Mx . LISTO
  */
 
 Vector PCA::media(Matrix A) {
