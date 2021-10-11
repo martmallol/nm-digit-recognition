@@ -270,7 +270,7 @@ PYBIND11_TEST:BOOL=OFF
 PYTHON_EXECUTABLE:FILEPATH=/home/tincho/Development/tp2/tp2-alu/tp2/tp2/bin/python
 
 //Path to a library.
-PYTHON_LIBRARY:FILEPATH=PYTHON_LIBRARY-NOTFOUND
+PYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.8.so
 
 //Install pybind11 headers in Python include directory instead
 // of default installation prefix
@@ -491,7 +491,7 @@ PYBIND11_VERSION_PATCH:INTERNAL=4
 //ADVANCED property for variable: PYTHON_EXECUTABLE
 PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 PYTHON_INCLUDE_DIRS:INTERNAL=/usr/include/python3.8
-PYTHON_LIBRARIES:INTERNAL=python3.8
+PYTHON_LIBRARIES:INTERNAL=/usr/lib/x86_64-linux-gnu/libpython3.8.so
 //ADVANCED property for variable: PYTHON_LIBRARY
 PYTHON_LIBRARY-ADVANCED:INTERNAL=1
 PYTHON_MODULE_EXTENSION:INTERNAL=.cpython-38-x86_64-linux-gnu.so
