@@ -32,26 +32,45 @@ double KNNClassifier::predictRow(Vector z) {
         dist(i) = (x_.row(i) - z).squaredNorm();
     }
 
+    //Ordeno las distancias de menor a mayor
     vector<unsigned int> ordenado;
+    for (int i = 0; i < dist.size(); ++i) {
+        ordenado[i] = dist(i);
+    }
+    sort(ordenado.begin(), ordenado.end()); //Los ordeno ascendentemente
 
-    Vector tags(k_);
-
-    //Me quedo con los primeros k indices ordenados
-    for (int i = 0; i < k_; ++i) {
-        tags(i) = ordenado[i];
+    //Me quedo con los primeros 'k' indices ordenados
+    // (el primer elemento de la tupla es la # de apariciones del tag)
+    vector< pair<double,unsigned int> > tags(k_);
+    for (unsigned int i = 0; i < k_; ++i) {
+        tags[i] = make_pair(1, ordenado[i]); //Seteo las apariciones en 1 y abajo las completo
     }
 
-    // Hago un counting sort para ver cual tag tiene mas votos
-    Vector countingSort(k_);
-    for (int i = 0; i < k_; ++i) {
-        countingSort[tags(i)]++;
+    /** Hasta aca creo que va ok **/
+
+    // Itero sobre mi vector para ver cuantas veces aparece cada tag
+    // Tambien elimino indices con tags repetidos
+    for (unsigned int i = 0; i < tags.size(); ++i) {
+        for (unsigned int j = i + 1; j < tags.size(); ++j) {
+            //Sii mi elemento se repite
+            if ( tags[j].second == tags[i].second) {
+                //Sumo su cantidad de apariciones, y borro el indice repetido
+                tags[i] = make_pair(tags[i].first++, tags[i].second);
+                //Como mi vector tendra un indice menos, hago que el 'j' no cambie
+                j--;
+            }
+        }
     }
 
     //Me quedo con la moda
-    double moda = countingSort(0);
-    for (int i = 1; i < k_; ++i) {
-
+    unsigned int modaIndice = 0; //Inicio lo que sera el indice del tag que mas aparece
+    for (unsigned int i = 1; i < tags.size(); ++i) {
+        if (tags[i].first > tags[modaIndice].first) {
+            modaIndice = i;
+        }
     }
+    double moda = tags[modaIndice].second; //Me quedo con el tag de mas apariciones
+    return moda;
 }
 
 Vector KNNClassifier::predict(Matrix X)
@@ -61,7 +80,7 @@ Vector KNNClassifier::predict(Matrix X)
 
     for (unsigned k = 0; k < X.rows(); ++k)
     {
-        ret(k) = 0;
+        ret(k) = predictRow(X.row(k));
     }
 
     return ret;

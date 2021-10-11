@@ -14,13 +14,13 @@ pair<double, Vector> power_iteration(const Matrix& X, unsigned num_iter, double 
      * COMPLETAR CODIGO
      **********************/
      Vector bOld(X.cols());
-    for (int i = 0; i < num_iter; ++i) {
+    for (unsigned int i = 0; i < num_iter; ++i) {
         bOld = b;
         b = bOld / bOld.squaredNorm();
 
         //Termino la iteracion si encontre el vector
         double cosAngle = b.transpose() * bOld;
-        if ((1.0 - eps) < cosAngle <= 1.0) {
+        if ((1.0 - eps) < cosAngle && cosAngle <= 1.0) {
             i = num_iter;
         }
     }
@@ -37,7 +37,7 @@ pair<Vector, Matrix> get_first_eigenvalues(const Matrix& X, unsigned num, unsign
     /***********************
      * COMPLETAR CODIGO
      **********************/
-    for (int i = 0; i < num; ++i) {
+    for (unsigned int i = 0; i < num; ++i) {
         pair<double, Vector> metodoPotencia = power_iteration(X, num_iter, epsilon);
         double eigenvalue = metodoPotencia.first; //Autovalor_i
         Vector v = metodoPotencia.second; //Autovector_i
