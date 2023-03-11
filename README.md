@@ -1,5 +1,5 @@
-# Digit Recognition: Numerical Methods Group Project. Made by Tomás Caneda and Martín Mallol.
-## 2021, 2nd semester
+# Digit Recognition: Numerical Methods Group Project.
+## Made by Tomás Caneda and Martín Mallol, 2021, 2nd semester
 
 ![Digits](./digits.jpeg)
 
