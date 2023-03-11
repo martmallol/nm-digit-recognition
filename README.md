@@ -1,4 +1,4 @@
-# Digit Recognition: Numerical Methods Group Project
+# Digit Recognition: Numerical Methods Group Project. Made by Tomás Caneda and Martín Mallol.
 ## 2021, 2nd semester
 
 ![Digits](./digits.jpeg)
@@ -115,10 +115,12 @@ In `notebooks/` we can find some examples that can be useful for running the pro
 
 In `docs/` the different metrics on our disposal can be found. Moreover, the project's tasks and presentation reside in this directory.
 
-Finally, `tp2` is the directory where we created the virtual environment. It can be accessed by running the following code:
+`tp2` is the directory where we created the virtual environment. It can be accessed by running the following code:
 ```
 source tp2/bin/activate
 ```
+
+Finally, in Informe.pdf there's the final essay.
 
 ### Users should be able to
 - Compile and run the C++ code.
