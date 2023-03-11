@@ -1,6 +1,8 @@
 # Digit Recognition: Numerical Methods Group Project
 ## 2021, 2nd semester
 
+![Digits](./digits.jpeg)
+
 ## Local Setup
 
 1. Create an empty git repo and clone this project
@@ -101,13 +103,37 @@ make install
 ```
 
 ## Overview
+This project studies a technique used for the area of Optical Character Recogniion (OCR). The learning process of the machine is being supervised with the k-Nearest Neighbors (kNN) classifier. By doing so, we discovered that a dimensionality reduction is necessary to be implemented on the samples of the dataset we were using. That's why we made experiments with the Principal Component Analysis (PCA) method. Its theoric fundamentals are discussed briefly.
 
 ### Project's directories and files
 
 In `data/`, as its name points out, we have the training data (`data/train.csv`) and the testing data (`data/test.csv`).
 
-### Other directories
-
 In `src/` we have the C++ code. More specifically, in `src/metnum.cpp` we finde the pybind's entry-point.
 
 In `notebooks/` we can find some examples that can be useful for running the project using the 'sklearn' library and the C++ implementation. 
+
+In `docs/` the different metrics on our disposal can be found. Moreover, the project's tasks and presentation reside in this directory.
+
+Finally, `tp2` is the directory where we created the virtual environment. It can be accessed by running the following code:
+```
+source tp2/bin/activate
+```
+
+### Users should be able to
+- Compile and run the C++ code.
+- Run every Notebook in the project (experiments and testing).
+- Read the essay and compare our conclusions with theirs.
+
+### Built with
+- C++
+- Python
+- Jupyter Notebooks
+- Digit Recognizer MNIST dataset
+
+### What I learnt
+- How a classifier and a dimensionality reduction technique work.
+- Get the pros and cons of throwing away 'redundant' data. Trying to find the best parameters so I cand get the best case scenario for every technique.
+- Manipulate a really big and complete dataset by taking small to medium sized representative samples.
+- Get the performance and time execution of multiple running tests.
+- Compare different metrics.
