@@ -1,122 +1,113 @@
-# Reconocimiento de dígitos: TP2 de Métodos Numéricos
-## 2021, 2do cuatrimestre
+# Digit Recognition: Numerical Methods Group Project
+## 2021, 2nd semester
 
-## Instrucciones
+## Local Setup
 
-
-1. Crear un repo git en donde se bajen esto
-
+1. Create an empty git repo and clone this project
 ```
 git init
-git remote add origin <nuestra-nueva-url-de-git>
+git remote add origin <new-git-url>
 ```
 
-2. Bajarse los repositorios de `pybind` y `eigen` como submódulos
-
+2. Download the pybind` and `eigen` repos as submodules
 ```
 git submodule init
 git submodule add https://github.com/eigenteam/eigen-git-mirror
 git submodule add https://github.com/pybind/pybind11
 git mv eigen-git-mirror eigen
-# Elegimos versiones de eigen y pybind
+# We choose the versions of eigen and pybind
 cd pybind11/ && git checkout v2.2.4 && cd ..
 cd eigen && git checkout 3.3.7 && cd ..
 ```
 
-3. Instalar requerimientos (*Previamente activar el entorno virtual. Ver  más abajo*)
-
+3. Install requirements (*Previously, activate the virtual environment in your PC. See below.*)
 ```
 pip install -r requirements.txt
 ```
 
-4. Descomprimir datos
-
+4. Decompress data
 ```
 cd data && gunzip *.gz && cd ..
 ```
 
-5. Correr Jupyter
-
+5. Run Jupyter
 ```
 jupyter lab
 ```
 
-Listo. Ya pueden disfrutar del TP2
+That's it!
 
-### Datos
+## Python's virtual environment creation
 
-En `data/` tenemos los datos de entrenamiento (`data/train.csv`) y los de test (`data/test.csv`).
+### With Python3 (this one worked best for me)
+```
+python3 -m venv your-project-name
+source your-project-name/bin/activate
+```
 
-### Otros directorios
-
-En `src/` está el código de C++, en particular en `src/metnum.cpp` está el entry-point de pybind.
-
-En `notebooks/` hay ejemplos para correr partes del TP usando sklearn y usando la implementación en C++.
-
-
-## Creación de un entorno virtual de python
-
-### Con pyenv
-
+### With pyenv
 ```
 curl https://pyenv.run | bash
 ```
 
-Luego, se sugiere agregar unas líneas al bashrc. Hacer eso, **REINICIAR LA CONSOLA** y luego...
-
+Then, it is suggested to add some code lines into the basrch. After that, **RESTART THE SHELL** and add the following code...
 ```
 pyenv install 3.6.5
 pyenv global 3.6.5
-pyenv virtualenv 3.6.5 tp2
+pyenv virtualenv 3.6.5 your-project-name
 ```
 
-En el directorio del proyecto
-
+On the project's directory:
 ```
-pyenv activate tp2
-```
-
-### Directamente con python3
-```
-python3 -m venv tp2
-source tp2/bin/activate
+pyenv activate your-project-name
 ```
 
-### Con Conda
+### With Conda
 ```
-conda create --name tp2 python=3.6.5
-conda activate tp2
+conda create --name your-project-name python=3.6.5
+conda activate your-project-name
 ```
 
-## Instalación de las depencias
+## Dependencies installment
 ```
 pip install -r requirements.txt
 ```
 
-## Correr notebooks de jupyter
-
+## How to run Jupyter Notebooks
+### 1st way
 ```
 cd notebooks
 jupyter lab
 ```
-o  notebook
+
+### 2nd Way
 ```
 jupyter notebook
 ```
 
+## Compilation
+Execute the first cell of the `knn.ipynb` notebook. If this doesn't work, folow the next steps:
 
-## Compilación
-Ejecutar la primera celda del notebook `knn.ipynb` o seguir los siguientes pasos:
-
-
-- Compilar el código C++ en un módulo de python
+- Compile C++ code on a Python module
 ```
 mkdir build
 cd build
 rm -rf *
 cmake -DPYTHON_EXECUTABLE="$(which python)" -DCMAKE_BUILD_TYPE=Release ..
 ```
-- Al ejecutar el siguiente comando se compila e instala la librería en el directorio `notebooks`
+- When executing the following command, the project gets compiled and the library is installed in the `notebooks` directory.
 ```
 make install
 ```
+
+## Overview
+
+### Project's directories and files
+
+In `data/`, as its name points out, we have the training data (`data/train.csv`) and the testing data (`data/test.csv`).
+
+### Other directories
+
+In `src/` we have the C++ code. More specifically, in `src/metnum.cpp` we finde the pybind's entry-point.
+
+In `notebooks/` we can find some examples that can be useful for running the project using the 'sklearn' library and the C++ implementation. 
